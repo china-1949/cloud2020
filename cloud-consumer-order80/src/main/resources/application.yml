@@ -1,0 +1,7 @@
+server:
+  port: 8080
+spring:
+  devtools:  #热部署自动化404问题
+    restart:
+      quiet-period: 2999ms
+      poll-interval: 3000ms

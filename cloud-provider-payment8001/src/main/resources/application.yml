@@ -1,0 +1,20 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  #数据库类型
+    driver-class-name: org.gjt.mm.mysql.Driver  #mysql 驱动包
+    url: jdbc:mysql://localhost:3306/db2019?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+  devtools:  #热部署自动化404问题
+    restart:
+      quiet-period: 2999ms
+      poll-interval: 3000ms
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.hm.springcloud.entities  # 所有Entity别名类所在包
