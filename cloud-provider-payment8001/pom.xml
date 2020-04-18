@@ -60,7 +60,12 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-
+        <!--相同代码打包-->
+        <dependency>
+            <groupId>com.hm.springclod</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
     </dependencies>
 

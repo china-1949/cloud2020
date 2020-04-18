@@ -17,4 +17,4 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.hm.springcloud.entities  # 所有Entity别名类所在包
+  type-aliases-package: com.hm.springcloud.entities  # 所有Entity别名类所在包 后面的共同实体类包名称要一致
