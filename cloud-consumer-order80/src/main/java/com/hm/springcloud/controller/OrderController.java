@@ -15,7 +15,8 @@ import javax.annotation.Resource;
 public class OrderController {
     //以前使用httpClient ，webService，现在视同RestTmeplate(封装前面的httpClient)
 
-    public static final  String PAYMENT_URL ="http://localhost:8001";
+  //  public static final  String PAYMENT_URL ="http://localhost:8001"; //单机版地址
+    public static  final  String  PAYMENT_URL= "http://CLOUD-PAYMENT-SERVICE"; //集群版服务名称地址
     @Resource
     private RestTemplate restTemplate;
 
