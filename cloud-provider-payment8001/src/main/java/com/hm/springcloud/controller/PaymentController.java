@@ -33,7 +33,7 @@ public class PaymentController {
 
         if(null!=payment){
 
-            return new CommonResult(200,"查询成功",payment+"\t"+"hiahjiasdsfefetr");
+            return new CommonResult(200,"查询成功",payment+"\t"+"haihai");
         }
         return  new CommonResult(444,"没有对应数据"+id,null);
     }

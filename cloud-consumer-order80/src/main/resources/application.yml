@@ -5,3 +5,15 @@ spring:
     restart:
       quiet-period: 2999ms
       poll-interval: 3000ms
+
+  application:
+    name: cloud-order-service
+
+eureka:
+  client:
+    #将自己注册到EurekaServer 默认为true
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的的注册信息，默认为true。单节点无所谓，集群设置为true才能配合ribbon使用负载均衡
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka  #注册到eureka中心
