@@ -1,12 +1,23 @@
-server: # 8004表示注册到zookeeper服务器的支付服务提供者端口号
-  port: 8004
-  # 服务别名 ---注册zookeeper到注册中心
+# sonsul 服务端口号
+server:
+     port: 8006
+#注册名称
 spring:
   application:
-    name: cloud-provider-payment
+    name: consul-provider-payment
+
+  #consul注册中心地址
   cloud:
-    zookeeper:
-      connect-string: 192.168.0.113:2181  #docker 安装zookeeper 可以配置多个zookeeper的container
+    consul:
+
+      host: localhost  # windows运行单机版命令consul agent -dev
+      port: 8500
+      discovery:
+       # hostname: 172.0.0.1
+        service-name: ${spring.application.name}
+
+
+
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource  #数据库类型
     driver-class-name: org.gjt.mm.mysql.Driver  #mysql 驱动包
@@ -18,6 +29,8 @@ spring:
     restart:
       quiet-period: 2999ms
       poll-interval: 3000ms
+
+
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
