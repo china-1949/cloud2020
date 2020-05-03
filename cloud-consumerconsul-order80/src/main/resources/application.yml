@@ -10,14 +10,12 @@ spring:
   #consul注册中心地址
   cloud:
     consul:
-
-      host: localhost  # windows运行单机版命令consul agent -dev
+      host: 192.168.0.101  #docker 环境使用consul  注意与物理主机桥接 以及health检查
+     # host: localhost  # windows运行单机版命令consul agent -dev
       port: 8500
-      discovery:
-       # hostname: 172.0.0.1
-       service-name: ${spring.application.name}
+      #discovery:
 
-
+       #healthCheckInterval: 1s
 
 
 
@@ -27,3 +25,20 @@ spring:
       quiet-period: 2999ms
       poll-interval: 3000ms
 
+  #开启更多的配置信息 配置访问所有地址，官网上面的所有端口地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  # 打开所有端口
+  #    enabled-by-default: false   #关闭所有的端点访问  ，下面 endpoint可以指定访问的端点
+  #      base-path: /monitor  # 一般是actuator
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true  #远程控制关闭
+    beans:
+      enabled: false  #beans 的端点禁止访问
+#    metrics:
+#      enabled: false  #不能访问metrics
