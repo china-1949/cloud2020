@@ -1,5 +1,6 @@
 package com.hm.springcloud.controller;
 
+
 import com.hm.springcloud.entities.CommonResult;
 import com.hm.springcloud.entities.Payment;
 import com.hm.springcloud.service.PaymentService;
@@ -37,9 +38,13 @@ public class PaymentController {
 
         if(null!=payment){
 
-            return new CommonResult(200,"查询成功,serverPort: "+serverPort,payment+"\t"+"haihai");
+            return new CommonResult(200,"查询成功,serverPort: "+serverPort,payment);
         }
         return  new CommonResult(444,"没有对应数据"+id,null);
     }
 
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB() {
+        return serverPort;
+    }
 }

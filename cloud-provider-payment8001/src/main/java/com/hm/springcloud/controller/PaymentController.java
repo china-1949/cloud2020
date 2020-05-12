@@ -47,7 +47,7 @@ public class PaymentController {
 
         if(null!=payment){
 
-            return new CommonResult(200,"查询成功,serverPort: "+serverPort,payment+"\t"+"haihai");
+            return new CommonResult(200,"查询成功,serverPort: "+serverPort,payment);
         }
         return  new CommonResult(444,"没有对应数据"+id,null);
     }
@@ -69,5 +69,11 @@ public class PaymentController {
 
         return  this.discoveryClient;
     }
+
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB() {
+        return serverPort;
+    }
+
 
 }

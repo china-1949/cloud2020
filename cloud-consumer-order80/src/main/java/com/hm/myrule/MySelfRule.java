@@ -22,6 +22,6 @@ public class MySelfRule {
 
     @Bean
     public IRule myRule() {
-        return new RandomRule();  //定义为ribbon随机轮询规则,此时默认轮询失败了
+        return new RandomRule();  //定义为ribbon随机规则,此时默认轮询失败了
     }
 }

@@ -2,7 +2,11 @@ package com.hm.springcloud.controller;
 
 import com.hm.springcloud.entities.CommonResult;
 import com.hm.springcloud.entities.Payment;
+import com.hm.springcloud.lb.LoadBalance;
+
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.net.URI;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -20,6 +26,12 @@ public class OrderController {
     public static  final  String  PAYMENT_URL= "http://CLOUD-PAYMENT-SERVICE"; //集群版服务名称地址
     @Resource
     private RestTemplate restTemplate;
+
+    @Resource
+    private LoadBalance loadBalance;
+
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     /**
      *
@@ -59,5 +71,18 @@ public class OrderController {
         return entity.getBody();
       }
       return  new CommonResult<>(444,"操作失败！！");
+    }
+  //现在只有这个接口演示成功，上面getInstances方式不对
+    @GetMapping(value = "/consumer/payment/lb")
+    public  String getPaymentLB(){
+      List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+      if(null==instances || instances.size()<=0){
+        return  null;
+      }
+
+      ServiceInstance serviceInstance =loadBalance.instances(instances);
+      URI uri = serviceInstance.getUri();  //此时上面的路径全部要用loadBalance
+
+      return  restTemplate.getForObject(uri+"/payment/lb",String.class);
     }
 }
