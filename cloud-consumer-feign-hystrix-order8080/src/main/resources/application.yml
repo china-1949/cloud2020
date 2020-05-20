@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  devtools:  #热部署自动化404问题
+    restart:
+      quiet-period: 2999ms
+      poll-interval: 3000ms
+
+  application:
+    name: cloud-orderfeignhystrix-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+    register-with-eureka: false   #不注册
+
+
