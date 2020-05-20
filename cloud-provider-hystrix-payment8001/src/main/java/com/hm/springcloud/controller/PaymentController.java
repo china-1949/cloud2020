@@ -23,7 +23,7 @@ public class PaymentController {
         return  paymentInfo_ok;
     }
 
-
+    //tomcat的默认工作线程数被打满了,没有多余的线程来分解压力和处理
     @GetMapping(value = "/payment/hystrix/timeout/{id}")
     public String paymentInfo_TimeOut(@PathVariable("id") Integer id){
         String paymentInfo_timeOut = paymentService.paymentInfo_TimeOut(id);
