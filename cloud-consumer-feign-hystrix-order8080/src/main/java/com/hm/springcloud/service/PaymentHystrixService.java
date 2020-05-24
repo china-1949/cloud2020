@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Component
-@FeignClient(value = "CLOUD-PROVIDER-HISTRIX-PAYMENT")
+@FeignClient(value = "CLOUD-PROVIDER-HISTRIX-PAYMENT",fallback =PaymentFallbackService.class)  //客户端提供者宕机处理：fallback =PaymentFallbackService.class
 public interface PaymentHystrixService {
     /**
      * 对方服务(8001)超时了,调用者(80)不能一直卡死等待,必须有服务降级
