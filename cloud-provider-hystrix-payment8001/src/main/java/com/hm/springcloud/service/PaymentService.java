@@ -48,6 +48,7 @@ public class PaymentService {
             //10s窗口期，请求十次，失败率达到60%跳闸
     }
     )
+    //
     public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
         if (id<0) {
             throw new RuntimeException("******id不能为负数");
@@ -55,7 +56,7 @@ public class PaymentService {
         String simpleUUID = IdUtil.simpleUUID();
         return Thread.currentThread().getName()+"\t" + "成功调用，流水号是：" + simpleUUID;
     }
-
+    //fallback
     public String paymentCircuitBreaker_fallback(@PathVariable("id") Integer id) {
         return "id不能为负数，请稍后再试............"+id;
     }
