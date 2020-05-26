@@ -15,25 +15,34 @@ spring:
           uri: lb://cloud-payment-service
           predicates:
             - Path=/payment/get/**   #断言，路径相匹配的进行路由
+
         - id: payment_routh2
           #uri: http://localhost:8001
           uri: lb://cloud-payment-service
+
           predicates:
             - Path=/payment/lb/**
-            - Method=Get   #get请求可以访问
+            - Method=GET,POST   #get请求可以访问
             - After=2020-05-26T17:10:11.744+08:00[Asia/Shanghai]   #该时间之后可以路由访问  2.Before Route Predicate该时间之前可以路由访问  3.Between Route Predicate  时间区间
 
             #- Cookie=username,chensong  #Cookie配置
             #- Header=X-Request-Id, \d+   #请求头要有X-Request-Id 属性并且值为整数的正则表达式
             #- Host=**.hm.com
-            - Query=username, \d+  #要有参数名username并且值还要是整数才能路由
+            #- Query=username, \d+  #要有参数名username并且值还要是整数才能路由
 
-        # 测试Gateway网关路由有两种配置方式:
+        # 测试Gateway网关路由有两种配置方式:yml和com.hm.springcloud.config.GateWayConfig
         - id: baidu_news
           uri: http://news.baidu.com/mil
 
           predicates:
             - Path=/mil/**
+        #局部的filter,测试清楚全局的 ，在cmd curl
+        - id: payment_routh3  #payment_route  #路由的ID，没有固定规则但要求唯一，建议配合服务名
+          uri: lb://cloud-payment-service
+          filters:
+            - AddRequestParameter=X-Request-Id,1024  #过滤器工厂会在匹配的请求头加上一对请求，名称为X-Request-Id值为1024
+          predicates:
+            - Path=/payment/discovery/**   #断言，路径相匹配的进行路由
 
 eureka:
   instance:
