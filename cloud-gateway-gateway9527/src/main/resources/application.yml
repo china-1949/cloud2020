@@ -17,7 +17,11 @@ spring:
           #uri: lb://cloud-payment-service
           predicates:
             - Path=/payment/lb/**
-
+        - id: baidu_news
+          uri: http://news.baidu.com/mil
+          #uri: lb://cloud-payment-service
+          predicates:
+            - Path=/mil/**
 
 eureka:
   instance:
