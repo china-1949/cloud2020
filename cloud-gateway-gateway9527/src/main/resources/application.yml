@@ -20,6 +20,14 @@ spring:
           uri: lb://cloud-payment-service
           predicates:
             - Path=/payment/lb/**
+            - Method=Get   #get请求可以访问
+            - After=2020-05-26T17:10:11.744+08:00[Asia/Shanghai]   #该时间之后可以路由访问  2.Before Route Predicate该时间之前可以路由访问  3.Between Route Predicate  时间区间
+
+            #- Cookie=username,chensong  #Cookie配置
+            #- Header=X-Request-Id, \d+   #请求头要有X-Request-Id 属性并且值为整数的正则表达式
+            #- Host=**.hm.com
+            - Query=username, \d+  #要有参数名username并且值还要是整数才能路由
+
         # 测试Gateway网关路由有两种配置方式:
         - id: baidu_news
           uri: http://news.baidu.com/mil
