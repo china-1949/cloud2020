@@ -1,0 +1,30 @@
+server:
+  port: 3344
+
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          skipSslValidation: true  #SSL的验证
+          uri: https://github.com/chenseng123/springcloud-config.git #GitHub上面的git仓库名字
+          #搜索目录
+          search-paths:
+            - springcloud-config
+          # ###读取分支
+      label: master
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
