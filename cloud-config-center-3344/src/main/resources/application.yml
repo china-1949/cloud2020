@@ -34,6 +34,7 @@ eureka:
     lease-expiration-duration-in-seconds: 2
 
 #rabbitmq相关配置，暴露bus刷新配置的端点   post刷新3344  curl  -X POST "http://localhost:3344/actuator/bus-refresh"
+#curl -X POST "http://localhost:3344/actuator/bus-refresh/config-client:3355" 只刷新3355的
 management:
   endpoints:  #暴露bus刷新配置的端点
     web:
