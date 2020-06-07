@@ -1,5 +1,5 @@
 server:
-  port: 3355
+  port: 3366
 
 spring:
   application:
@@ -12,13 +12,13 @@ spring:
       name: config  #配置文件名称
       profile: dev  #读取后缀名称   上述三个综合: master分支上config-dev.yml的配置文件被读取http://localhost:3344/master/config-dev.yml
       uri: http://localhost:3344  #配置中心的地址
-
   #rabbitmq相关配置：  docker run -d  -p 5672:5672  -p 15672:15672 --name myrabbitmq imagename/imageid
   rabbitmq:
     host: 192.168.0.106
     port: 5672
     username: guest
     password: guest
+
 
 eureka:
   client:
