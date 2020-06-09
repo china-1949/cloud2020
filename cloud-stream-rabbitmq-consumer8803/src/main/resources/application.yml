@@ -1,5 +1,5 @@
 server:
-  port: 8802
+  port: 8803
 spring:
   application:
     name: cloud-stream-consumer
@@ -20,8 +20,8 @@ spring:
           destination: studyExchange #表示要使用的exchange名称定义
           content-type: application/json #设置消息类型，本次为json
           binder: defaultRabbit  #设置要绑定的消息服务的具体设置
-          group: hmA   #分组A
 
+          group: hmA   #分组A     #group: hmB   #分组b
 eureka:
   client:
     service-url:
