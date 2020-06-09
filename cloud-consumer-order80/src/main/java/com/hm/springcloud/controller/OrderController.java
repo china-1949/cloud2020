@@ -85,7 +85,6 @@ public class OrderController {
 
       return  restTemplate.getForObject(uri+"/payment/lb",String.class);
     }
-
     // ====================zipkin+sleuth
     @GetMapping(value = "/consumer/payment/zipkin")
     public String paymentZZipkin(){
