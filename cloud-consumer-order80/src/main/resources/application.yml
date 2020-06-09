@@ -8,6 +8,12 @@ spring:
 
   application:
     name: cloud-order-service
+  zipkin:
+    base-url: http://192.168.0.106:9411  #docker run -d -p 9411:9411 openzipkin/zipkin
+  sleuth:
+    sampler:
+      #采样率值介于0到1之间，1则表示全部采集
+      probability: 1
 
 eureka:
   client:

@@ -12,6 +12,12 @@
     <artifactId>cloud-consumer-order80</artifactId>
 
     <dependencies>
+
+        <!--        包含了Sleuth+zipkin-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
         <!--eureka-client  新版带了netflix-ribbon  可以不引入ribbon的gav-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
