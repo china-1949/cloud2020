@@ -17,3 +17,4 @@ spring:
 #https://nacos.io/zh-cn/docs/what-is-nacos.html
 # ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
 #nacos-config-client-dev.yaml
+#nacos-config-client-test.yaml   --》测试config.info
