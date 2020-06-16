@@ -20,4 +20,4 @@ spring:
 # ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
 #nacos-config-client-dev.yaml
 #nacos-config-client-test.yaml   --》测试config.info
-#三级目录：命名空间->Group_id ->Data_id
+#三级目录关系：命名空间->Group_id ->Data_id
