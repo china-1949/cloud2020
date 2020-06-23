@@ -6,7 +6,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 
 @SpringBootApplication
 @EnableHystrixDashboard
-public class HystrixDashboardMain9001 {  //HystrixDashboardMain9001 监控 cloud-provider-hystrix-payment8001
+public class HystrixDashboardMain9001 {  //HystrixDashboardMain9001 监控 cloud-provider-hystrix-payment8001 开启的服务
     public static void main(String[] args) {
         SpringApplication.run(HystrixDashboardMain9001.class,args);
     }
