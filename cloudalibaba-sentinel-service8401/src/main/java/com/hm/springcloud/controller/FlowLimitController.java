@@ -13,6 +13,11 @@ public class FlowLimitController {
 
     @RequestMapping("testA")
     public String testA(){
+        try {
+            TimeUnit.MICROSECONDS.sleep(800); //0.8s
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "testA-------";
     }
 
