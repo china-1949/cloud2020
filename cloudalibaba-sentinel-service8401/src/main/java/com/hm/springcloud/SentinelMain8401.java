@@ -1,4 +1,4 @@
-package com.atguigu.springcloud;
+package com.hm.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,9 +6,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ConfigNacosMain3377 {
-
+public class SentinelMain8401 {
     public static void main(String[] args) {
-        SpringApplication.run(ConfigNacosMain3377.class,args);
+        SpringApplication.run(SentinelMain8401.class,args);
     }
 }
