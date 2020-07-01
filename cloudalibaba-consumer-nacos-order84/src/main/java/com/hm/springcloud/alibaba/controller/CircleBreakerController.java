@@ -25,8 +25,8 @@ public class CircleBreakerController {
     private RestTemplate restTemplate;
 
     @GetMapping("/consumer/fallback/{id}")
-    @SentinelResource(value = "fallback")  //没有配置
-
+  //  @SentinelResource(value = "fallback")  //没有配置
+      @SentinelResource(value = "fallback",fallback = "handlerFallback")  //fallback只负责业务异常  相当于Hystrix的服务降级
     public CommonResult<Payment> fallback(@PathVariable("id") Long id) {
         CommonResult<Payment> result = restTemplate.getForObject(SERVICE_URL+"/paymentSQL/"+id,CommonResult.class,id);
         if (id==4) {
@@ -37,5 +37,10 @@ public class CircleBreakerController {
         return result;
     }
 
+    //本例子是fallback的  此时不会出现 Whitelabel Error Page
+    public CommonResult handlerFallback(@PathVariable("id") Long id, Throwable e) {
+        Payment payment = new Payment(id,"null");
+        return new CommonResult(444,"兜底异常handlerFallback,exception内容"+e.getMessage(),payment);
+    }
 
 }
