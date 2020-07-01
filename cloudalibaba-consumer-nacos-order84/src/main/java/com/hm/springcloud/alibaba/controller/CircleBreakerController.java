@@ -28,7 +28,9 @@ public class CircleBreakerController {
   //  @SentinelResource(value = "fallback")  //没有配置
   //    @SentinelResource(value = "fallback",fallback = "handlerFallback")  //fallback只负责业务异常  相当于Hystrix的服务降级
   //  @SentinelResource(value = "fallback",blockHandler = "blockHandler") //blockHandler只负责sentine控制台配置违规
-    @SentinelResource(value = "fallback",fallback = "handlerFallback",blockHandler = "blockHandler") //exceptionsToIgnore配置
+    //@SentinelResource(value = "fallback",fallback = "handlerFallback",blockHandler = "blockHandler") ///handlerFallback和blockHandler都配置
+    @SentinelResource(value = "fallback",fallback = "handlerFallback",blockHandler = "blockHandler",
+            exceptionsToIgnore = {IllegalArgumentException.class}) //exceptionsToIgnore配置
     public CommonResult<Payment> fallback(@PathVariable("id") Long id) {
         CommonResult<Payment> result = restTemplate.getForObject(SERVICE_URL+"/paymentSQL/"+id,CommonResult.class,id);
         if (id==4) {
@@ -52,5 +54,8 @@ public class CircleBreakerController {
     }
 
     //若blockHandler和fallback都进行了配置，则被限流降级而被抛出BlockException只会进入blockHandler进行处理的
+
+
+
 
 }
