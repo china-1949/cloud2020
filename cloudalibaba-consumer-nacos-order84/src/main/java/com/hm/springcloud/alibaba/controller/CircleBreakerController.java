@@ -26,7 +26,8 @@ public class CircleBreakerController {
 
     @GetMapping("/consumer/fallback/{id}")
   //  @SentinelResource(value = "fallback")  //没有配置
-      @SentinelResource(value = "fallback",fallback = "handlerFallback")  //fallback只负责业务异常  相当于Hystrix的服务降级
+  //    @SentinelResource(value = "fallback",fallback = "handlerFallback")  //fallback只负责业务异常  相当于Hystrix的服务降级
+    @SentinelResource(value = "fallback",blockHandler = "blockHandler") //blockHandler只负责sentine控制台配置违规
     public CommonResult<Payment> fallback(@PathVariable("id") Long id) {
         CommonResult<Payment> result = restTemplate.getForObject(SERVICE_URL+"/paymentSQL/"+id,CommonResult.class,id);
         if (id==4) {
@@ -38,9 +39,17 @@ public class CircleBreakerController {
     }
 
     //本例子是fallback的  此时不会出现 Whitelabel Error Page
-    public CommonResult handlerFallback(@PathVariable("id") Long id, Throwable e) {
+//    public CommonResult handlerFallback(@PathVariable("id") Long id, Throwable e) {
+//        Payment payment = new Payment(id,"null");
+//        return new CommonResult(444,"兜底异常handlerFallback,exception内容"+e.getMessage(),payment);
+//    }
+
+    //本例是只有blockHandler
+    public CommonResult blockHandler(@PathVariable("id") Long id, BlockException blockException) {
         Payment payment = new Payment(id,"null");
-        return new CommonResult(444,"兜底异常handlerFallback,exception内容"+e.getMessage(),payment);
+        return new CommonResult(445,"blockHandler-sentinel限流，无此流水：blockException:"+blockException.getMessage(),payment);
     }
+
+
 
 }
