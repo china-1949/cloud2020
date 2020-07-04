@@ -17,7 +17,7 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!--        后续做持久化用到-->
+        <!--        后续做持久化用到 重启服务保存到nacos数据库 sentinel配置持久化-->
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-datasource-nacos</artifactId>
