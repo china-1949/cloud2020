@@ -2,6 +2,7 @@ package com.hm.springcloud.alibaba.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.hm.springcloud.alibaba.service.PaymentService;
 import com.hm.springcloud.entities.CommonResult;
 import com.hm.springcloud.entities.Payment;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,7 +56,14 @@ public class CircleBreakerController {
 
     //若blockHandler和fallback都进行了配置，则被限流降级而被抛出BlockException只会进入blockHandler进行处理的
 
+    //--------------------------------------------------------OpenFeign
 
+    @Resource
+    private PaymentService paymentService;
 
+    @GetMapping(value = "/consumer/paymentSQL/{id}")
+    public CommonResult<Payment> payemtSQL(@PathVariable("id") Long id ){
+        return  paymentService.paymentSQL(id);
+    }
 
 }

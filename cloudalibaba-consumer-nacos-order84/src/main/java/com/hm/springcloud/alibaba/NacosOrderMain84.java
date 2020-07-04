@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients  //激活FeignClients
 public class NacosOrderMain84 {
 
     public static void main(String[] args) {
