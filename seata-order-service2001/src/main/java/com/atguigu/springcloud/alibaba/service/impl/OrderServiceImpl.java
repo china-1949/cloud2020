@@ -26,6 +26,7 @@ public class OrderServiceImpl implements OrderService {
     下订单->减库存->扣余额->改(订单)状态
      */
     @Override
+    @GlobalTransactional(name="fps-create-order",rollbackFor = Exception.class)  //@GlobalTransactional 全局的,所有异常回滚
     public void create(Order order) {
         log.info("-------->开始创建新订单");
         orderDao.create(order);

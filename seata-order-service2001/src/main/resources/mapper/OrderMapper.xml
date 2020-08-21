@@ -12,7 +12,7 @@
     </resultMap>
 
 
-    <insert id="create">
+    <insert id="create" parameterType="com.atguigu.springcloud.alibaba.domain.Order" >
         insert into t_order(user_id,product_id,count,money,status)
         value (#{userId},#{productId},#{count},#{money},0)
     </insert>
